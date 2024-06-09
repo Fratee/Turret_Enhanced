@@ -62,20 +62,22 @@ while{alive _unit} do
 	
 		_posx = (radius * sin _Az)/(4/3);
 		_posy = ((radius * cos _Az)*(sin _El))-0.0325;		//good solution if marker allowed in box
-	
 		
 		_newPosition = [_posx, _posy];
 		
+		uiNamespace setVariable ["newPosition",_newPosition];		
 		
-		
-		uiNamespace setVariable ["newPosition",_newPosition];			
-	
-		
-		
+		// Situational awareness cue
+		_R = (90 - abs(_turretEl)) / 90 * radius;
+		_offset = - 0.125;
+		_SituationalAwarenessCue_pos = [-_R * (sin -_turretAz), -_R * (cos -_turretAz) + _offset];
+		uiNamespace setVariable ["SituationalAwarenessCue_pos", _SituationalAwarenessCue_pos];		
+
 		if (missionnamespace getVariable "Fat_Lurch_ShowNorth") then {710 cutRsc ["North", "Plain", -1, false];};	//Enable/disable from CBA
 		if (missionnamespace getVariable "Fat_Lurch_ShowAz") then {709 cutRsc ["Az", "Plain", -1, false];};		//Enable/disable from CBA
 		if (missionnamespace getVariable "Fat_Lurch_ShowEl") then {708 cutRsc ["El", "Plain", -1, false];};		//Enable/disable from CBA
-	
+		if (missionnamespace getVariable "Fat_Lurch_ShowSituationalAwarenessCue") then {706 cutRsc ["SituationalAwarenessCue", "Plain", -1, false]};
+
 	
 		uiNameSpace getVariable "myUI_LevelTitle" ctrlSetText(_target);
 		uiNameSpace getVariable "guiEl" ctrlSetText(format["%1",round(_turretEl)]);

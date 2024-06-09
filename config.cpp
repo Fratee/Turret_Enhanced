@@ -182,6 +182,32 @@ class Extended_Init_EventHandlers
 
 class RscTitles
 {
+	class SituationalAwarenessCue
+	{
+		idd=706;
+		fadein=0;
+		fadeout=0;
+		duration=0.1;
+		onLoad="uiNameSpace setVariable ['myUI_LevelTitle', (_this select 0) displayCtrl 653];";
+		class controls
+		{			
+			class SituationalAwarenessCue
+			{
+				idc=707;
+				type=0;
+				style=2;
+				x="uiNamespace getVariable 'SituationalAwarenessCue_pos' select 0";
+				y="uiNamespace getVariable 'SituationalAwarenessCue_pos' select 1";
+				w=1;
+				h=1;
+				font="EtelkaNarrowMediumPro";
+				sizeEx=0.15;
+				colorBackground[]={0,0,0,0};
+				colorText[]={1,1,1,1};
+				text=".";
+			};			
+		};
+	};
 	class North
 	{    
 		idd = 710;
