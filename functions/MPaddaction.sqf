@@ -8,9 +8,11 @@ _pri = -1000;
 
 #include "\a3\editor_f\Data\Scripts\dikCodes.h"
 
+// Add keybinds
 ["Turret Enhanced","add_blk_marker", "Mark Target (Blk)",{_this call fatlurch_fnc_addMarkerBlk}, "", [DIK_1, [true, false, false]]] call CBA_fnc_addKeybind;
 ["Turret Enhanced","add_blu_marker", "Mark Target (Blu)",{_this call fatlurch_fnc_addMarkerBlu}, "", [DIK_2, [true, false, false]]] call CBA_fnc_addKeybind;
 ["Turret Enhanced","add_red_marker", "Mark Target (Red)",{_this call fatlurch_fnc_addMarkerRed}, "", [DIK_3, [true, false, false]]] call CBA_fnc_addKeybind;
+["Turret Enhanced","cursor_zero", "Camera Cursor Zero (center)",{_this call fatlurch_fnc_CursorZero}, "", [DIK_T, [true, true, false]]] call CBA_fnc_addKeybind; // Default keybinding (Ctrl + Shift + T)
 
 _unit addAction ["Mark Target (Blk)", "_this call fatlurch_fnc_addMarkerBlk",nil, _pri,false, true, "","(([_this, _target] call fatlurch_fnc_isViewISR)&&(Fat_Lurch_Markers))"];
 _unit addAction ["Mark Target <t color='#0000FF'>(Blu)</t>", "_this call fatlurch_fnc_addMarkerBlu",nil, _pri - 1,false, true, "","(([_this, _target] call fatlurch_fnc_isViewISR)&&(Fat_Lurch_Markers))"];

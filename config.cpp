@@ -149,6 +149,10 @@ class CfgFunctions
 			{
 				file = "Turret_Enhanced\functions\h60check.sqf";
 			};
+			class cursorZero
+			{
+				file="Turret_Enhanced\functions\cursorZero.sqf";
+			};			
 			/*
 			class blacklistActions
 			{
