@@ -12,7 +12,7 @@ _pri = -1000;
 ["Turret Enhanced","add_blk_marker", "Mark Target (Blk)",{_this call fatlurch_fnc_addMarkerBlk}, "", [DIK_1, [true, false, false]]] call CBA_fnc_addKeybind;
 ["Turret Enhanced","add_blu_marker", "Mark Target (Blu)",{_this call fatlurch_fnc_addMarkerBlu}, "", [DIK_2, [true, false, false]]] call CBA_fnc_addKeybind;
 ["Turret Enhanced","add_red_marker", "Mark Target (Red)",{_this call fatlurch_fnc_addMarkerRed}, "", [DIK_3, [true, false, false]]] call CBA_fnc_addKeybind;
-["Turret Enhanced","measure_distance", "Measure Distance",{_this call fatlurch_fnc_measDistance}, "", [DIK_L, [false, true, false]]] call CBA_fnc_addKeybind; // Default keybinding (Shift + T)
+["Turret Enhanced","measure_distance", "Measure Distance",{_this call fatlurch_fnc_measDistance}, "", [DIK_L, [false, true, false]]] call CBA_fnc_addKeybind; // Default keybinding (Shift + L)
 
 
 _unit addAction ["Mark Target (Blk)", "_this call fatlurch_fnc_addMarkerBlk",nil, _pri,false, true, "","(([_this, _target] call fatlurch_fnc_isViewISR)&&(Fat_Lurch_Markers))"];
