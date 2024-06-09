@@ -73,10 +73,40 @@ while{alive _unit} do
 		_SituationalAwarenessCue_pos = [-_R * (sin -_turretAz), -_R * (cos -_turretAz) + _offset];
 		uiNamespace setVariable ["SituationalAwarenessCue_pos", _SituationalAwarenessCue_pos];		
 
+		// symbol flash
+		_SituationalAwarenessCueVisibile = true;
+		if (hasPilotCamera vehicle player) then
+		{
+			getPilotCameraTarget vehicle player params ["_pilotCamTracking", "_pilotCamTargetPos", "_pilotCamTarget"];
+
+			if (_pilotCamTracking) then 
+			{
+				_currentLOS = AGLToASL (screenToWorld [0.5, 0.5]);
+				_targetLOS = _pilotCamTargetPos;
+				if (_currentLOS distance _targetLOS > 20) then 
+				{
+					_PAM_timer = 0;
+					if (!(isNil {uiNameSpace getVariable "PAM_flashingTimer"})) then
+					{
+						_PAM_timer = uiNameSpace getVariable "PAM_flashingTimer";
+					};
+					if (diag_tickTime > _PAM_timer + 0.5) then 
+					{
+						_SituationalAwarenessCueVisibile = false;
+					};
+					if (diag_tickTime > _PAM_timer + 1) then
+					{
+						_PAM_timer = diag_tickTime;
+					};
+					uiNamespace setVariable ["PAM_flashingTimer", _PAM_timer];
+				};
+			};
+		};
+
 		if (missionnamespace getVariable "Fat_Lurch_ShowNorth") then {710 cutRsc ["North", "Plain", -1, false];};	//Enable/disable from CBA
 		if (missionnamespace getVariable "Fat_Lurch_ShowAz") then {709 cutRsc ["Az", "Plain", -1, false];};		//Enable/disable from CBA
 		if (missionnamespace getVariable "Fat_Lurch_ShowEl") then {708 cutRsc ["El", "Plain", -1, false];};		//Enable/disable from CBA
-		if (missionnamespace getVariable "Fat_Lurch_ShowSituationalAwarenessCue") then {706 cutRsc ["SituationalAwarenessCue", "Plain", -1, false]};
+		if ((missionnamespace getVariable "Fat_Lurch_ShowSituationalAwarenessCue") and _SituationalAwarenessCueVisibile) then {706 cutRsc ["SituationalAwarenessCue", "Plain", -1, false]};
 
 	
 		uiNameSpace getVariable "myUI_LevelTitle" ctrlSetText(_target);
