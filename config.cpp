@@ -188,7 +188,7 @@ class RscTitles
 		fadein=0;
 		fadeout=0;
 		duration=0.1;
-		onLoad="uiNameSpace setVariable ['myUI_LevelTitle', (_this select 0) displayCtrl 653];";
+		onLoad="uiNameSpace setVariable ['gui_saCue', (_this select 0) displayCtrl 653];";
 		class controls
 		{			
 			class SituationalAwarenessCue
